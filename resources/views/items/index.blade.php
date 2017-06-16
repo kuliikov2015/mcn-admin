@@ -10,6 +10,7 @@
         <tr>
             <th>ID</th>
             <th>Тип проката</th>
+            <th>Размер</th>
             <th>Тип стали</th>
             <th>Действие</th>
         </tr>
@@ -17,9 +18,11 @@
             <tr>
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->rollType->name }}</td>
+                <td>{{ $item->size }}</td>
                 <td>{{ $item->steelType->name }}</td>
                 <td>
                     <form class="form-inline" action="items/{{ $item->id }}" method="post">
+                        <a href="/items/{{ $item->id }}/edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="delete">
                         <button class="btn btn-default"><i class="fa fa-trash"></i></button>

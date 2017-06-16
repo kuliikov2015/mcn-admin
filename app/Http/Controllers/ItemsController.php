@@ -40,9 +40,10 @@ class ItemsController extends Controller
         $this->validate($request, [
             'roll_type_id' => 'required|exists:roll_types,id',
             'steel_type_id' => 'required|exists:steel_types,id',
+            'size' => 'required'
         ]);
 
-        Item::create($request->only(['roll_type_id', 'steel_type_id']));
+        Item::create($request->only(['roll_type_id', 'steel_type_id', 'size']));
         return redirect('/items');
     }
 
@@ -60,24 +61,31 @@ class ItemsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Item $item
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Item $item)
     {
-        //
+        return view('items.edit', ['item' => $item, 'rollTypes' => RollType::all(), 'steelTypes' => SteelType::all() ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Item $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //
+        $this->validate($request, [
+            'roll_type_id' => 'required|exists:roll_types,id',
+            'steel_type_id' => 'required|exists:steel_types,id',
+            'size' => 'required'
+        ]);
+
+        $item->update($request->only(['roll_type_id', 'steel_type_id', 'size']));
+        return redirect('/items');
     }
 
     /**

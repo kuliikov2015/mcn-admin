@@ -18,4 +18,4 @@ Route::get('/', function () {
 
 Route::resource('roll_types', 'RollTypesController', ['only' => ['index', 'store', 'create']]);
 Route::resource('steel_types', 'SteelTypesController', ['only' => ['index', 'store', 'create']]);
-Route::resource('items', 'ItemsController', ['only' => ['index', 'store', 'create', 'destroy']]);
+Route::resource('items', 'ItemsController', ['only' => ['index', 'store', 'create', 'destroy', 'edit', 'update']]);
